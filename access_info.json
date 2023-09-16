@@ -1,0 +1,10 @@
+{
+    "access_token": "sl.BmFhyGhLTOa_QLfsPOXREbIXOlef_M5xxlzmalU0j6mK5MmuQ5l2-T4nKlmZcpjPpl4KhQZQEH3ILA_kiOWmo36Q1vfcFSfF8j8LtuOlr-AQfeDmYMOTmWI0_28-Eej56qt_SKdbDuEoyAHocuvt",
+    "token_type": "bearer",
+    "expires_in": 14400,
+    "refresh_token": "SFlCTKKvCCsAAAAAAAAAAX1fkxdhmEdvD-Ptw0eCJiQLhTE4IuJcPhbiOWuNjsLI",
+    "scope": "account_info.read account_info.write file_requests.read file_requests.write files.content.read files.content.write files.metadata.read files.metadata.write sharing.read sharing.write",
+    "uid": "1880120401",
+    "account_id": "dbid:AAD8jVYuyHNcW-Q9bYz_LWl4L1Rjzypf6TY"
+  }
+  

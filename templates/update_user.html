@@ -1,0 +1,72 @@
+<!-- update_user.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Update Admin Flag for {{ email }}</h2>
+        <form method="post">
+            {% csrf_token %}
+            <label for="admin_flag">Admin Flag:</label>
+            <select id="admin_flag" name="admin_flag">
+                <option value="block" {% if admin_flag == 'block' %}selected{% endif %}>Block</option>
+                <option value="pass" {% if admin_flag == 'pass' %}selected{% endif %}>Pass</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</body>
+</html>

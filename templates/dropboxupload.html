@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropbox CRM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 80%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        #status_message {
+            margin-top: 10px;
+            color: #333;
+            text-align: center;
+        }
+    </style>
+    <!-- Add any necessary CSS or JS dependencies here -->
+    <!-- For example, you might need to include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dropbox CRM</h1>
+        <form method="post" action="{% url 'dropbox_upload' %}">
+            {% csrf_token %}
+            <label for="jobNumber">Job Number:</label>
+            <input type="text" id="jobNumber" name="jobNumber" required><br>
+
+            <label for="jobDescription">Job Description:</label>
+            <input type="text" id="jobDescription" name="jobDescription" required><br>
+
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="5" required></textarea><br>
+
+            <label for="dateOfWorks">Date of Works:</label>
+            <input type="text" id="dateOfWorks" name="dateOfWorks" required><br>
+
+            <label for="duration">Duration:</label>
+            <input type="text" id="duration" name="duration" required><br>
+
+            <label for="localHospital">Local Hospital:</label>
+            <textarea id="localHospital" name="localHospital" rows="5" required></textarea><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        <div id="status_message"></div>
+    </div>
+
+    <script>
+    $(document).ready(function () {
+        $('form').on('submit', function (event) {
+            event.preventDefault();
+            $('#status_message').text('Files uploading'); // Set initial status
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'dropbox_upload' %}',
+                data: $(this).serialize(),
+                success: function (response) {
+                    $('#status_message').text(response.status_message); // Update status based on the response
+                },
+                error: function () {
+                    $('#status_message').text('Uploading failed'); // Handle error case
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
